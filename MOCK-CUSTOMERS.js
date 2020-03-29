@@ -48,5 +48,14 @@ const customer5 = {
     id: 55555
 };
 
+const CountriesEnum = {
+    ISRAEL: 'Israel',
+    CALIFORNIA: 'California',
+    ITALY: 'Italy',
+    GREECE: 'Greece',
+    TEXAS: 'Texas'
+};
+
 const customers = [customer1, customer2, customer3, customer4, customer5];
 exports.customers = customers;
+exports.CountriesEnum = CountriesEnum;

@@ -1,9 +1,12 @@
 const customers = require('./MOCK-CUSTOMERS').customers;
+const CountriesEnum = require('./MOCK-CUSTOMERS').CountriesEnum;
+
+
 
 class CustomersService {
     constructor() {
         this.customers = customers;
-        this.countries = ['Israel', 'California', 'Italy', 'Greece', 'Texas'];
+        this.countries = CountriesEnum;
     }
 
     getCustomers() {
@@ -28,9 +31,10 @@ class CustomersService {
     }
 
     addCustomer(info) {
-        if (!this.countries.includes(info.country)) {
+        if (!Object.values(this.countries).includes(info.country)) {
             return 'country invalid';
         }
+
         info.id = Math.floor(Math.random() * 90000) + 10000;    //rands 6 digit number in radix 10
         const newCustomer = this.createCustomer(info);
         this.customers.push(newCustomer);
@@ -38,7 +42,7 @@ class CustomersService {
     }
 
     updateCustomer(customerId, info) {
-        if (!this.countries.includes(info.country) && info.country) {
+        if (!Object.values(this.countries).includes(info.country)) {
             return 'country invalid';
         }
 
