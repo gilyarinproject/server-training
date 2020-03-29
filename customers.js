@@ -14,41 +14,31 @@ class CustomersService {
         return this.customers.find(customer => customer.id === customerId);
     }
 
-    findMissingDetails(info) {
-        let missing = [];
-
-        if (!info.firstName) {
-            missing.push('first name missing');
-        }
-        if (!info.lastName) {
-            missing.push('last name missing');
-        }
-        if (!info.city) {
-            missing.push('city missing');
-        }
-        if (!info.country) {
-            missing.push('country missing');
-        }
-
-        return missing;
+    createCustomer(info) {
+        const newCustomer = {
+            firstName: info.firstName,
+            lastName: info.lastName,
+            address: {
+                city: info.city,
+                country: info.country
+            },
+            id: info.id
+        };
+        return newCustomer;
     }
 
     addCustomer(info) {
-        if (info.firstName && info.lastName && info.city && info.country) {
-            if (!this.countries.includes(info.country)) {
-                return 'country invalid';
-            }
-            info.id = Math.floor(Math.random() * 90000) + 10000;    //rands 6 digit number in radix 10
-            this.customers.push(info);
-            return 'success';
+        if (!this.countries.includes(info.country)) {
+            return 'country invalid';
         }
-        else {
-            return this.findMissingDetails(info);
-        }
+        info.id = Math.floor(Math.random() * 90000) + 10000;    //rands 6 digit number in radix 10
+        const newCustomer = this.createCustomer(info);
+        this.customers.push(newCustomer);
+        return newCustomer;
     }
 
     updateCustomer(customerId, info) {
-        if (!this.countries.includes(info.country)) {
+        if (!this.countries.includes(info.country) && info.country) {
             return 'country invalid';
         }
 
@@ -56,9 +46,9 @@ class CustomersService {
             if (this.customers[i].id === customerId) {
                 this.customers[i].firstName = info.firstName ? info.firstName : this.customers[i].firstName;
                 this.customers[i].lastName = info.lastName ? info.lastName : this.customers[i].lastName;
-                this.customers[i].city = info.city ? info.city : this.customers[i].city;
-                this.customers[i].country = info.country ? info.country : this.customers[i].country;
-                return 'updated';
+                this.customers[i].address.city = info.city ? info.city : this.customers[i].address.city;
+                this.customers[i].address.country = info.country ? info.country : this.customers[i].address.country;
+                return this.customers[i];
             }
         }
 
@@ -74,9 +64,9 @@ class CustomersService {
         }
         // check if actually deleted
         if (this.customers.find(customer => customer.id === customerId)) {
-            return false;
+            return 'not deleted';
         }
-        return true;
+        return 'deleted';
     }
 }
 

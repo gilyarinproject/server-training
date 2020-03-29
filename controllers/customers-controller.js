@@ -1,4 +1,4 @@
-let CustomersService = require('../services/customers');
+let CustomersService = require('../customers');
 
 class CustomersController {
     constructor(router) {
