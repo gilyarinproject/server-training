@@ -1,38 +1,15 @@
-// let express = require('express');
-// let bodyParser = require('body-parser');
-// let app = express();
-// app.use(bodyParser.json());
-//
-// let customersApi = express.Router();
-// app.use('/', customersApi);
-//
-// let CustomersController = require('./controllers/customers-controller');
-// let cc = new CustomersController(customersApi);
-//
-//
-// let server = app.listen(3000,  () => {
-//     let host = server.address().address;
-//     host = (host === '::' ? 'localhost' : host);
-//     let port = server.address().port;
-//
-//     console.log('listening at http://%s:%s', host, port);
-// });
+const { ApolloServer } = require('apollo-server-express');
 
-
-const { ApolloServer } = require('apollo-server');
 const typeDefs = require('./customers-schema');
 const resolvers = require('./customers-resolvers');
 
+const express = require('express');
+
+const app = express();
 const server = new ApolloServer({ typeDefs, resolvers });
+server.applyMiddleware({ app });
+const PORT = process.env.PORT || 4000;
 
-server.listen().then(({ url }) => {
-    console.log(`🚀  Server ready at ${url}`);
-});
-
-// server.listen(3000, () => {
-//     let host = server.address().address;
-//     host = (host === '::' ? 'localhost' : host);
-//     let port = server.address().port;
-//
-//     console.log('listening at http://%s:%s', host, port);
-// });
+app.listen(PORT, () => {
+    console.log('🚀  Server ready at http://localhost:' + PORT + '/graphql');
+})

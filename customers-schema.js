@@ -1,6 +1,14 @@
 const { gql } = require('apollo-server');
 
 const typeDefs = gql`
+    enum Countries {
+        Israel
+        California
+        Italy
+        Greece
+        Texas
+    }
+    
     type Customer {
         id: Int!
         firstName: String!
@@ -10,23 +18,22 @@ const typeDefs = gql`
     
     type Address {
         city: String!
-        country: String!
+        country: Countries!
     }
     
     input CustomerInput {
         firstName: String
         lastName: String
         city: String
-        country: String
+        country: Countries
     }
     
     input NewCustomerInput {
         firstName: String!
         lastName: String!
         city: String!
-        country: String!
-    }
-    
+        country: Countries!
+    }  
     
     type Query {
         customers: [Customer]
