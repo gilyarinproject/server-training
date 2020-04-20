@@ -23,7 +23,8 @@ class CustomersService {
                 city: info.city,
                 country: info.country
             },
-            id: info.id
+            id: info.id,
+            gender: info.gender
         };
         return newCustomer;
     }

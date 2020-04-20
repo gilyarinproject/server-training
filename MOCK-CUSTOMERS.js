@@ -1,3 +1,19 @@
+const orders1 = [
+    {itemName: 'Basketball', itemPrice: 7.99},
+    {itemName: 'Shoes', itemPrice: 199.99}
+];
+
+const orders2 = [
+    {itemName: 'Frisbee', itemPrice: 2.99},
+    {itemName: 'Hat', itemPrice: 5.99}
+];
+
+const orders3 = [
+    {itemName: 'Boomerang', itemPrice: 29.99},
+    {itemName: 'Helmet', itemPrice: 19.99},
+    {itemName: 'Kangaroo Saddle', itemPrice: 179.99}
+];
+
 const customer1 = {
     firstName: 'Ted',
     lastName: 'James',
@@ -5,7 +21,9 @@ const customer1 = {
         city: 'Holon',
         country: 'Israel'
     },
-    id: 11111
+    id: 11111,
+    gender: 'Male',
+    orders: orders1
 };
 
 const customer2 = {
@@ -15,7 +33,9 @@ const customer2 = {
         city: 'Encinitas',
         country: 'California'
     },
-    id: 22222
+    id: 22222,
+    gender: 'Female',
+    orders: orders2
 };
 
 const customer3 = {
@@ -25,7 +45,9 @@ const customer3 = {
         city: 'Napoli',
         country: 'Italy'
     },
-    id: 33333
+    id: 33333,
+    gender: 'Male',
+    orders: orders3
 };
 
 const customer4 = {
@@ -35,7 +57,8 @@ const customer4 = {
         city: 'Athens',
         country: 'Greece'
     },
-    id: 44444
+    id: 44444,
+    gender: 'Female'
 };
 
 const customer5 = {
@@ -45,7 +68,8 @@ const customer5 = {
         city: 'Dallas',
         country: 'Texas'
     },
-    id: 55555
+    id: 55555,
+    gender: 'Male'
 };
 
 const customers = [customer1, customer2, customer3, customer4, customer5];

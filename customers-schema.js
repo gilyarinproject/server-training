@@ -9,11 +9,23 @@ const typeDefs = gql`
         Texas
     }
     
+    enum Gender {
+        Male
+        Female
+    }
+    
+    type Order {
+        itemName: String!
+        itemPrice: Float!
+    }
+    
     type Customer {
         id: Int!
         firstName: String!
         lastName: String!
         address: Address!
+        gender: Gender!
+        orders: [Order!]
     }
     
     type Address {
@@ -33,6 +45,7 @@ const typeDefs = gql`
         lastName: String!
         city: String!
         country: Countries!
+        gender: Gender!
     }  
     
     type Query {
