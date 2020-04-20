@@ -1,2 +1,2 @@
 # server-training
-Run with command "npm start"
+Run GraphQL server with command "npm start"
